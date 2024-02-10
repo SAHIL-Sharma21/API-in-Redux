@@ -11,7 +11,7 @@ export const fetchTodos = createAsyncThunk('fetchTodos', async () => {
 
 //creating slice
 const todoSlice = createSlice({
-    name: todo,
+    name: "todo",
     initialState: {
         isLoading: false,
         isError: false,

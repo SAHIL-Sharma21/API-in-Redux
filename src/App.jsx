@@ -5,13 +5,31 @@ import './App.css'
 function App() {
   
   const dispatch = useDispatch();
-  const state = useSelector((state) => state)
-  console.log(state);
+  const store = useSelector((state) => state)
+  console.log(store);
+
+  //if state is loading
+  if(store.todo.isLoading){
+    return <h1>Loading....</h1>
+  }
+
+  if(store.todo.isError){
+    return <h1>Something went wrong!</h1>
+  }
 
   return (
     <>
       <h1>Api calling in redux </h1>
-      <button onClick={(e) => dispatch(fetchTodos())}>Fetch todo</button>
+      <button onClick={() => dispatch(fetchTodos())}>Fetch todo</button>
+
+    {/* rendring list  */}
+    {store.todo.data && store.todo.data.map((item) => {
+      return (
+        <ul>
+          <li key={item.id}>{item.title}</li>
+        </ul>
+      )
+    })}
     </>
   )
 }
